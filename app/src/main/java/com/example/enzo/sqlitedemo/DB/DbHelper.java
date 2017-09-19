@@ -19,9 +19,9 @@ public class DbHelper extends SQLiteOpenHelper {
 
     public static final String SQL_CREATE_ORDER_TABLE = "CREATE TABLE " + OrderEntry.TABLE_NAME + " (" +
             OrderEntry._ID + " INTEGER PRIMARY KEY ON CONFLICT REPLACE," +
-            OrderEntry.COL_PRODUCT_NAME + " TEXT," +
-            OrderEntry.COL_ORDER_PRICE + " INTEGER," +
-            OrderEntry.COL_COUNTRY + " TEXT);";
+            OrderEntry.PRODUCT_NAME + " TEXT," +
+            OrderEntry.ORDER_PRICE + " INTEGER," +
+            OrderEntry.COUNTRY + " TEXT);";
     public static final String SQL_DELETE_ORDER_TABLE = "DROP TABLE IF EXISTS " + OrderEntry.TABLE_NAME;
 
     public DbHelper(Context context) {

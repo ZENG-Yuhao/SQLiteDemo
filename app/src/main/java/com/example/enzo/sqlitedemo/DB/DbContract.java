@@ -14,9 +14,9 @@ public final class DbContract {
     }
 
     public static class OrderEntry implements BaseColumns {
-        public static final String TABLE_NAME       = "table_order";
-        public static final String COL_PRODUCT_NAME = "product_name";
-        public static final String COL_ORDER_PRICE  = "order_price";
-        public static final String COL_COUNTRY      = "country";
+        public static final String TABLE_NAME   = "table_order";
+        public static final String PRODUCT_NAME = "product_name";
+        public static final String ORDER_PRICE  = "order_price";
+        public static final String COUNTRY      = "country";
     }
 }

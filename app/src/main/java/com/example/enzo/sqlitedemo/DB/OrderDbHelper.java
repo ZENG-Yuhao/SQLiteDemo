@@ -29,9 +29,9 @@ public class OrderDbHelper {
         // specified id exists already when inserting a row.
         ContentValues values = new ContentValues();
         values.put(OrderEntry._ID, order.getId());
-        values.put(OrderEntry.COL_PRODUCT_NAME, order.getProductName());
-        values.put(OrderEntry.COL_ORDER_PRICE, order.getOrderPrice());
-        values.put(OrderEntry.COL_COUNTRY, order.getCountry());
+        values.put(OrderEntry.PRODUCT_NAME, order.getProductName());
+        values.put(OrderEntry.ORDER_PRICE, order.getOrderPrice());
+        values.put(OrderEntry.COUNTRY, order.getCountry());
 
         long newRowId = db.insert(OrderEntry.TABLE_NAME, null, values);
         return newRowId != -1;
@@ -41,9 +41,9 @@ public class OrderDbHelper {
         SQLiteDatabase db = mDbHelper.getReadableDatabase();
         String[] cols = {
                 OrderEntry._ID,
-                OrderEntry.COL_PRODUCT_NAME,
-                OrderEntry.COL_ORDER_PRICE,
-                OrderEntry.COL_COUNTRY
+                OrderEntry.PRODUCT_NAME,
+                OrderEntry.ORDER_PRICE,
+                OrderEntry.COUNTRY
         };
         String where = OrderEntry._ID + " = ?";
         String[] whereArgs = {String.valueOf(id)};
@@ -55,9 +55,9 @@ public class OrderDbHelper {
             // we're querying data by primary key, only one single value or null will be got.
             cursor.moveToFirst();
             int orderId = cursor.getInt(cursor.getColumnIndex(OrderEntry._ID));
-            String productName = cursor.getString(cursor.getColumnIndex(OrderEntry.COL_PRODUCT_NAME));
-            int price = cursor.getInt(cursor.getColumnIndex(OrderEntry.COL_ORDER_PRICE));
-            String country = cursor.getString(cursor.getColumnIndex(OrderEntry.COL_COUNTRY));
+            String productName = cursor.getString(cursor.getColumnIndex(OrderEntry.PRODUCT_NAME));
+            int price = cursor.getInt(cursor.getColumnIndex(OrderEntry.ORDER_PRICE));
+            String country = cursor.getString(cursor.getColumnIndex(OrderEntry.COUNTRY));
             orderFound = new Order(orderId, productName, price, country);
         }
         cursor.close();
@@ -68,9 +68,9 @@ public class OrderDbHelper {
         SQLiteDatabase db = mDbHelper.getReadableDatabase();
         String[] cols = {
                 OrderEntry._ID,
-                OrderEntry.COL_PRODUCT_NAME,
-                OrderEntry.COL_ORDER_PRICE,
-                OrderEntry.COL_COUNTRY
+                OrderEntry.PRODUCT_NAME,
+                OrderEntry.ORDER_PRICE,
+                OrderEntry.COUNTRY
         };
         String sortOrder = OrderEntry._ID + " ASC";
         Cursor cursor = db.query(OrderEntry.TABLE_NAME, cols, null, null, null, null, sortOrder);
@@ -79,9 +79,9 @@ public class OrderDbHelper {
             list = new ArrayList<>(cursor.getCount());
             while (cursor.moveToNext()) {
                 int orderId = cursor.getInt(cursor.getColumnIndex(OrderEntry._ID));
-                String productName = cursor.getString(cursor.getColumnIndex(OrderEntry.COL_PRODUCT_NAME));
-                int price = cursor.getInt(cursor.getColumnIndex(OrderEntry.COL_ORDER_PRICE));
-                String country = cursor.getString(cursor.getColumnIndex(OrderEntry.COL_COUNTRY));
+                String productName = cursor.getString(cursor.getColumnIndex(OrderEntry.PRODUCT_NAME));
+                int price = cursor.getInt(cursor.getColumnIndex(OrderEntry.ORDER_PRICE));
+                String country = cursor.getString(cursor.getColumnIndex(OrderEntry.COUNTRY));
                 list.add(new Order(orderId, productName, price, country));
             }
         }
@@ -92,9 +92,9 @@ public class OrderDbHelper {
     public boolean update(Order order) {
         SQLiteDatabase db = mDbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(OrderEntry.COL_PRODUCT_NAME, order.getProductName());
-        values.put(OrderEntry.COL_ORDER_PRICE, order.getOrderPrice());
-        values.put(OrderEntry.COL_COUNTRY, order.getCountry());
+        values.put(OrderEntry.PRODUCT_NAME, order.getProductName());
+        values.put(OrderEntry.ORDER_PRICE, order.getOrderPrice());
+        values.put(OrderEntry.COUNTRY, order.getCountry());
 
         String where = OrderEntry._ID + " = ?";
         String[] whereArgs = {String.valueOf(order.getId())};
