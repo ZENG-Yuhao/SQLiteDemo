@@ -90,7 +90,7 @@ public class MainActivity extends Activity implements OnClickListener {
     }
 
     private int getEditTextId() {
-        if (edtxt_id.getText() != null)
+        if (edtxt_id.getText() != null && edtxt_price.getText().length() > 0)
             return Integer.valueOf(edtxt_id.getText().toString());
         else
             return -1;
@@ -101,7 +101,7 @@ public class MainActivity extends Activity implements OnClickListener {
     }
 
     private int getEditTextPrice() {
-        if (edtxt_price.getText() != null)
+        if (edtxt_price.getText() != null && edtxt_price.getText().length() > 0)
             return Integer.valueOf(edtxt_price.getText().toString());
         else
             return -1;
