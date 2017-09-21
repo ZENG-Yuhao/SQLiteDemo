@@ -89,25 +89,25 @@ public class MainActivity extends Activity implements OnClickListener {
         mAdapter.setData(mOrderDbHelper.getAll());
     }
 
-    private int getEditTextId() {
+    private int getInputId() {
         if (edtxt_id.getText() != null && edtxt_price.getText().length() > 0)
             return Integer.valueOf(edtxt_id.getText().toString());
         else
             return -1;
     }
 
-    private String getEditTextName() {
+    private String getInputProductName() {
         return edtxt_name.getText().toString();
     }
 
-    private int getEditTextPrice() {
+    private int getInputOrderPrice() {
         if (edtxt_price.getText() != null && edtxt_price.getText().length() > 0)
             return Integer.valueOf(edtxt_price.getText().toString());
         else
             return -1;
     }
 
-    private String getEditTextCountry() {
+    private String getInputCountry() {
         return edtxt_country.getText().toString();
     }
 
@@ -115,18 +115,18 @@ public class MainActivity extends Activity implements OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_add:
-                Order order = new Order(getEditTextId(), getEditTextName(), getEditTextPrice(), getEditTextCountry());
+                Order order = new Order(getInputId(), getInputProductName(), getInputOrderPrice(), getInputCountry());
                 mOrderDbHelper.save(order);
                 refreshList();
                 txt_message.setText("Save order : " + order.getId());
                 break;
             case R.id.btn_delete:
-                mOrderDbHelper.delete(getEditTextId());
+                mOrderDbHelper.delete(getInputId());
                 refreshList();
-                txt_message.setText("Delete order : " + getEditTextId());
+                txt_message.setText("Delete order : " + getInputId());
                 break;
             case R.id.btn_find:
-                Order orderFound = mOrderDbHelper.get(getEditTextId());
+                Order orderFound = mOrderDbHelper.get(getInputId());
                 if (orderFound != null) {
                     edtxt_id.setText(String.valueOf(orderFound.getId()));
                     edtxt_name.setText(orderFound.getProductName());
@@ -138,10 +138,10 @@ public class MainActivity extends Activity implements OnClickListener {
                             orderFound.getCountry());
                     refreshList();
                 } else
-                    txt_message.setText("Order " + getEditTextId() + " not found.");
+                    txt_message.setText("Order " + getInputId() + " not found.");
                 break;
             case R.id.btn_update:
-                Order order1 = new Order(getEditTextId(), getEditTextName(), getEditTextPrice(), getEditTextCountry());
+                Order order1 = new Order(getInputId(), getInputProductName(), getInputOrderPrice(), getInputCountry());
                 mOrderDbHelper.update(order1);
                 refreshList();
                 txt_message.setText("Update order : " + order1.getId());
